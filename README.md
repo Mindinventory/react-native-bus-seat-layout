@@ -15,7 +15,6 @@ import { multiply } from "react-native-booking-ticket";
 
 // ...
 
-const result = await multiply(3, 7);
 ```
 
 ## Contributing
