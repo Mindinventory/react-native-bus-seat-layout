@@ -21,7 +21,7 @@ import SeatsLayout from "react-native-booking-ticket";
 | driverPosition | _string (Optional)_ | Accepts string args among `left` or `right`. Default is `right`. |
 | isSleeperLayout | _boolean (Optional)_ | Accepts boolean value either `true` or `false`. Default is `false`. |
 | maxSeatToSelect | _number (Optional)_ | Allow uset to select maximum number of seats to book in one go. Default value `7`. |
-| selectedSeats | _Array<SelectedSeats> (Optional)_ | Accepts value seatNumber `number` and seatType `number` which accepts value from (`booked` | `women` | `blocked`). Default its set to blank array. |
+| selectedSeats | _Array<SelectedSeats> (Optional)_ | Accepts value seatNumber `number` and seatType `number` which accepts value from (`booked` or `women` or `blocked`). Default its set to blank array. |
 
 ## Contributing
 
