@@ -1,3 +1,5 @@
+import type { ImageSourcePropType } from 'react-native';
+
 export type SeatType =
   | 'booked'
   | 'available'
@@ -9,16 +11,18 @@ export type SeatType =
 
 export type SelectedSeatType = 'booked' | 'women' | 'blocked';
 
+export type SeatImageAssetsType = 'available' | 'booked' | 'women' | 'blocked'| 'driver';
+
 export interface SeatLayout {
   id: string;
   type: SeatType;
-  isStatusChange?: boolean;
   seatNo?: number;
+  isStatusChange?: boolean;
   isSeatSeleced?: boolean;
 }
 export interface Layout {
-  columnOne: number,
-  columnTwo: number
+  columnOne: number;
+  columnTwo: number;
 }
 export interface SelectedSeats {
   seatNumber: number;
@@ -27,9 +31,3 @@ export interface SelectedSeats {
 
 export type DriverPosition = 'left' | 'right';
 
-export interface SeatImages {
-  booked?: string;
-  available?: string;
-  blocked?: string;
-  women?: string;
-}

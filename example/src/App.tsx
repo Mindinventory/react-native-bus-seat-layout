@@ -1,3 +1,4 @@
+import { DriverIcon, SeatIcon } from '../assets';
 import * as React from 'react';
 
 import { SafeAreaView, StyleSheet, View } from 'react-native';
@@ -16,6 +17,8 @@ export default function App() {
           { seatNumber: 1, seatType: 'blocked' },
           { seatNumber: 4, seatType: 'blocked' },
         ]}
+        seatImage={SeatIcon}
+        // driverImage={DriverIcon}
       />
     </SafeAreaView>
   );

@@ -25,6 +25,7 @@ import {
   selectedSeatColor,
 } from './styles';
 import SeatContainer from './component/SeatContainer';
+import type { ImageSourcePropType } from 'react-native';
 
 export interface SeatsLayoutProps {
   row: number;
@@ -33,6 +34,8 @@ export interface SeatsLayoutProps {
   isSleeperLayout?: boolean;
   maxSeatToSelect?: number;
   selectedSeats?: Array<SelectedSeats>;
+  seatImage?: string | ImageSourcePropType;
+  driverImage?: string | ImageSourcePropType;
 }
 const SeatsLayout: React.FC<SeatsLayoutProps> = ({
   row = 10,
@@ -41,6 +44,8 @@ const SeatsLayout: React.FC<SeatsLayoutProps> = ({
   driverPosition = 'right',
   maxSeatToSelect = 7,
   selectedSeats = [],
+  seatImage = undefined,
+  driverImage = undefined,
 }) => {
   const [bookingSeat, setBookingSeat] = useState<Array<Array<SeatLayout>>>([]);
   const [userSelectedSeats, setUserSelectedSeat] = useState<Array<SeatLayout>>(
@@ -183,6 +188,8 @@ const SeatsLayout: React.FC<SeatsLayoutProps> = ({
         item={item}
         index={index}
         isSleeperLayout={isSleeperLayout}
+        seatImage={seatImage}
+        driverImage={driverImage}
         disableSeat={userSelectedSeats.length == maxSeatToSelect}
         onSeatSelected={(seat) => {
           onSeatSelected(seat);
@@ -219,7 +226,9 @@ const SeatsLayout: React.FC<SeatsLayoutProps> = ({
       <>
         {seatData.type == 'blocked' ? (
           <ImageBackground
-            source={layoutImage[seatData.type]}
+            source={
+              seatImage != undefined ? seatImage : layoutImage[seatData.type]
+            }
             style={bgImageStyle}
             imageStyle={{
               tintColor: selectedSeatColor[seatData.type],
@@ -227,14 +236,13 @@ const SeatsLayout: React.FC<SeatsLayoutProps> = ({
             }}
             resizeMode="cover"
           >
-            <Image
-              source={blockedSource}
-              style={imgHeaderStyle}
-            />
+            <Image source={blockedSource} style={imgHeaderStyle} />
           </ImageBackground>
         ) : (
           <Image
-            source={layoutImage[seatData.type]}
+            source={
+              seatImage != undefined ? seatImage : layoutImage[seatData.type]
+            }
             style={[
               seatImageStyle,
               { tintColor: selectedSeatColor[seatData.type] },

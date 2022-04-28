@@ -3,6 +3,7 @@ import { View } from 'react-native';
 import type { SeatLayout } from '../types';
 import { disableButton, seatContainerStyle } from '../styles';
 import Seat from './Seat';
+import type { ImageSourcePropType } from 'react-native';
 
 export interface SeatContainerProps {
   item: Array<SeatLayout>;
@@ -10,6 +11,8 @@ export interface SeatContainerProps {
   disableSeat: boolean;
   isSleeperLayout?: boolean;
   onSeatSelected?: (seat: SeatLayout) => void;
+  seatImage?: string | ImageSourcePropType;
+  driverImage?: string | ImageSourcePropType;
 }
 
 const SeatContainer: React.FC<SeatContainerProps> = ({
@@ -17,6 +20,8 @@ const SeatContainer: React.FC<SeatContainerProps> = ({
   index,
   isSleeperLayout,
   disableSeat,
+  seatImage = undefined,
+  driverImage = undefined,
   onSeatSelected,
 }) => {
   return (
@@ -29,6 +34,8 @@ const SeatContainer: React.FC<SeatContainerProps> = ({
       {item.map((seat) => {
         return (
           <Seat
+            seatImage={seatImage}
+            driverImage={driverImage}
             key={
               seat.id +
               Math.floor(Math.random() * 1000 + 1) +
