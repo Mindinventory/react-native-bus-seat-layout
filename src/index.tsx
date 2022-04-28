@@ -14,10 +14,14 @@ import type {
   SelectedSeats,
 } from './types';
 import {
+  bgImageStyle,
   blockedSource,
+  imgHeaderStyle,
   instructionSeatLayout,
   layoutImage,
   mainContainerStyle,
+  seatImageStyle,
+  seatNumberStyle,
   selectedSeatColor,
 } from './styles';
 import SeatContainer from './component/SeatContainer';
@@ -216,13 +220,7 @@ const SeatsLayout: React.FC<SeatsLayoutProps> = ({
         {seatData.type == 'blocked' ? (
           <ImageBackground
             source={layoutImage[seatData.type]}
-            style={{
-              height: 35,
-              width: 35,
-              alignItems: 'center',
-              justifyContent: 'center',
-              marginRight: 5,
-            }}
+            style={bgImageStyle}
             imageStyle={{
               tintColor: selectedSeatColor[seatData.type],
               alignSelf: 'center',
@@ -231,28 +229,21 @@ const SeatsLayout: React.FC<SeatsLayoutProps> = ({
           >
             <Image
               source={blockedSource}
-              style={{
-                height: '45%',
-                width: '45%',
-              }}
+              style={imgHeaderStyle}
             />
           </ImageBackground>
         ) : (
           <Image
             source={layoutImage[seatData.type]}
-            style={{
-              height: 35,
-              width: 35,
-              tintColor: selectedSeatColor[seatData.type],
-              marginRight: 5,
-            }}
+            style={[
+              seatImageStyle,
+              { tintColor: selectedSeatColor[seatData.type] },
+            ]}
             resizeMode="contain"
           />
         )}
 
-        <Text style={{ textTransform: 'capitalize', marginRight: 5 }}>
-          {seatData.type}
-        </Text>
+        <Text style={seatNumberStyle}>{seatData.type}</Text>
       </>
     );
   };

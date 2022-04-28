@@ -1,6 +1,8 @@
-import { ViewStyle } from 'react-native';
+import type { ViewStyle } from 'react-native';
 import type { ImageRequireSource } from 'react-native';
 import { seatHeightConst, seatSleeperHeightConst } from './component/Seat';
+import type { ImageStyle } from 'react-native';
+import type { TextStyle } from 'react-native';
 
 export const marginHorizontal = {
   booked: 2,
@@ -71,7 +73,7 @@ export const layoutImage = {
   blocked: require('./assets/seat.png'),
   women: require('./assets/seat.png'),
 };
-export const blockedSource: ImageRequireSource = require('./assets/block.png')
+export const blockedSource: ImageRequireSource = require('./assets/block.png');
 
 export const seatContainerStyle: ViewStyle = {
   flexDirection: 'row',
@@ -97,4 +99,27 @@ export const instructionSeatLayout: ViewStyle = {
   alignItems: 'center',
   justifyContent: 'space-evenly',
   marginHorizontal: 10,
+};
+
+export const bgImageStyle: ViewStyle = {
+  height: 40,
+  width: 40,
+  alignItems: 'center',
+  justifyContent: 'center',
+  marginRight: 5,
+};
+
+export const imgHeaderStyle: ImageStyle = {
+  height: '40%',
+  width: '40%',
+};
+export const seatImageStyle: ImageStyle = {
+  height: 40,
+  width: 40,
+  marginRight: 5,
+};
+
+export const seatNumberStyle: TextStyle = {
+  textTransform: 'capitalize',
+  marginRight: 5,
 };
