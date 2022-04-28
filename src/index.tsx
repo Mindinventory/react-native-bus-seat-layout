@@ -7,7 +7,12 @@ import {
   Text,
   ImageBackground,
 } from 'react-native';
-import type { DriverPosition, SeatLayout, SelectedSeats } from './types';
+import type {
+  DriverPosition,
+  Layout,
+  SeatLayout,
+  SelectedSeats,
+} from './types';
 import {
   blockedSource,
   instructionSeatLayout,
@@ -19,7 +24,7 @@ import SeatContainer from './component/SeatContainer';
 
 export interface SeatsLayoutProps {
   row: number;
-  layout: { columnOne: number; columnTwo: number };
+  layout: Layout;
   driverPosition?: DriverPosition;
   isSleeperLayout?: boolean;
   maxSeatToSelect?: number;
@@ -141,7 +146,6 @@ const SeatsLayout: React.FC<SeatsLayoutProps> = ({
     setBookingSeat(allArray);
   }, []);
 
-  console.log('bookingSeat >>> ', JSON.stringify(bookingSeat));
   const onSeatSelected = useCallback(
     (seat: SeatLayout) => {
       let allChangedItem: Array<Array<SeatLayout>> = bookingSeat;

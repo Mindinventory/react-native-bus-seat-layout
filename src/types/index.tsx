@@ -16,7 +16,10 @@ export interface SeatLayout {
   seatNo?: number;
   isSeatSeleced?: boolean;
 }
-
+export interface Layout {
+  columnOne: number,
+  columnTwo: number
+}
 export interface SelectedSeats {
   seatNumber: number;
   seatType: SelectedSeatType;
