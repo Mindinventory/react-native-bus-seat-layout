@@ -312,7 +312,6 @@ const SeatsLayout: React.FC<SeatsLayoutProps> = ({
         </View> */}
         <FlatList
           showsVerticalScrollIndicator={false}
-          contentContainerStyle={{}}
           bounces={false}
           data={[...bookingSeat]}
           renderItem={({ item, index }) => {

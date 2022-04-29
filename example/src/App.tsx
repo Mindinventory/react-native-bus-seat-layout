@@ -12,10 +12,10 @@ export default function App() {
         layout={{ columnOne: 2, columnTwo: 2 }}
         driverPosition="right"
         selectedSeats={[
-          { seatNumber: 17, seatType: 'women' },
-          { seatNumber: 11, seatType: 'women' },
-          { seatNumber: 1, seatType: 'blocked' },
+          { seatNumber: 1, seatType: 'booked' },
           { seatNumber: 4, seatType: 'booked' },
+          { seatNumber: 11, seatType: 'women' },
+          { seatNumber: 17, seatType: 'women' },
           { seatNumber: 43, seatType: 'blocked' },
         ]}
         numberTextStyle={{ fontSize: 12 }}
