@@ -180,7 +180,7 @@ const SeatsLayout: React.FC<SeatsLayoutProps> = ({
   const getSelectedSeats = (bookingSeatArg: Array<Array<SeatLayout>>) => {
     let filterSelectedSeats = bookingSeatArg.flatMap((rowSeatArr) => {
       return rowSeatArr.filter((rowSeat) => {
-        return rowSeat.type == 'booked';
+        return rowSeat.type == 'booked' && rowSeat.isStatusChange;
       });
     });
     setUserSelectedSeat(filterSelectedSeats);
