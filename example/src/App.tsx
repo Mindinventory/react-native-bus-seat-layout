@@ -1,4 +1,4 @@
-import { DriverIcon, SeatIcon } from '../assets';
+import { DriverIcon, SeatIcon, SleeperSeatIcon } from '../assets';
 import * as React from 'react';
 
 import { SafeAreaView, StyleSheet, View } from 'react-native';
@@ -9,31 +9,25 @@ export default function App() {
     <SafeAreaView>
       <SeatsLayout
         row={16}
-        layout={{ columnOne: 3, columnTwo: 2 }}
+        layout={{ columnOne: 2, columnTwo: 2 }}
         driverPosition="right"
+        // isSleeperLayout
         selectedSeats={[
           { seatNumber: 17, seatType: 'women' },
           { seatNumber: 11, seatType: 'women' },
           { seatNumber: 1, seatType: 'blocked' },
-          { seatNumber: 4, seatType: 'blocked' },
+          { seatNumber: 4, seatType: 'booked' },
+          { seatNumber: 43, seatType: 'blocked' },
+          { seatNumber: 33, seatType: 'blocked' },
+          { seatNumber: 23, seatType: 'blocked' },
+          { seatNumber: 11, seatType: 'blocked' },
+          { seatNumber: 67, seatType: 'blocked' },
         ]}
-        seatImage={SeatIcon}
-        // driverImage={DriverIcon}
+        seatImage={{ image: SeatIcon, tintColor: '#B2B2B2' }}
+        // driverImage={{ image: DriverIcon, tintColor: 'red' }}
+        // blockedSeatImage={{image: DriverIcon, tintColor:'red'}}
+        numberTextStyle={{ fontSize: 12 }}
       />
     </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    // alignSelf: 'center',
-    backgroundColor: 'white',
-    // height: '100%',
-    // width: '100%',
-  },
-  box: {
-    width: 60,
-    height: 60,
-    marginVertical: 20,
-  },
-});

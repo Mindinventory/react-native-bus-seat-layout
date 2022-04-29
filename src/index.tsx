@@ -5,18 +5,18 @@ import {
   SafeAreaView,
   Image,
   Text,
-  ImageBackground,
+  TextStyle
 } from 'react-native';
 import type {
+  AvaiableSeat,
+  BlockedSeat,
   DriverPosition,
+  DriverSeat,
   Layout,
   SeatLayout,
   SelectedSeats,
 } from './types';
 import {
-  bgImageStyle,
-  blockedSource,
-  imgHeaderStyle,
   instructionSeatLayout,
   layoutImage,
   mainContainerStyle,
@@ -27,6 +27,9 @@ import {
 import SeatContainer from './component/SeatContainer';
 import type { ImageSourcePropType } from 'react-native';
 
+/*
+This are props that require to pass in order to get seat layout
+*/
 export interface SeatsLayoutProps {
   row: number;
   layout: Layout;
@@ -34,8 +37,11 @@ export interface SeatsLayoutProps {
   isSleeperLayout?: boolean;
   maxSeatToSelect?: number;
   selectedSeats?: Array<SelectedSeats>;
-  seatImage?: string | ImageSourcePropType;
-  driverImage?: string | ImageSourcePropType;
+  seatImage?: AvaiableSeat;
+  blockedSeatImage?: BlockedSeat;
+  driverImage?: DriverSeat;
+  numberTextStyle?: TextStyle;
+  getBookedSeats?: (seats: Array<SeatLayout>) => void;
 }
 const SeatsLayout: React.FC<SeatsLayoutProps> = ({
   row = 10,
@@ -45,7 +51,10 @@ const SeatsLayout: React.FC<SeatsLayoutProps> = ({
   maxSeatToSelect = 7,
   selectedSeats = [],
   seatImage = undefined,
+  blockedSeatImage = undefined,
   driverImage = undefined,
+  numberTextStyle,
+  getBookedSeats,
 }) => {
   const [bookingSeat, setBookingSeat] = useState<Array<Array<SeatLayout>>>([]);
   const [userSelectedSeats, setUserSelectedSeat] = useState<Array<SeatLayout>>(
@@ -105,10 +114,7 @@ const SeatsLayout: React.FC<SeatsLayoutProps> = ({
 
         while (j < layout.columnOne + layout.columnTwo) {
           let preSelectedSeatItem = selectedSeats.filter((item) => {
-            return (
-              item.seatNumber ==
-              (i % 2 == 0 || i != row - 1 ? revCounter : seatNumber)
-            );
+            return item.seatNumber == (i % 2 == 0 ? revCounter : seatNumber);
           });
 
           let seatLayout: SeatLayout = {
@@ -117,7 +123,7 @@ const SeatsLayout: React.FC<SeatsLayoutProps> = ({
               preSelectedSeatItem.length > 0
                 ? preSelectedSeatItem[0].seatType
                 : 'available',
-            seatNo: i % 2 == 0 || i != row - 1 ? revCounter : seatNumber,
+            seatNo: i % 2 == 0 ? revCounter : seatNumber,
             isSeatSeleced: preSelectedSeatItem.length > 0,
           };
 
@@ -140,13 +146,7 @@ const SeatsLayout: React.FC<SeatsLayoutProps> = ({
           }
           j += 1;
           revCounter -= 1;
-          if (j == 0) {
-            let newSeatNumber = seatNumber;
-            newSeatNumber -= seatNumber;
-            seatNumber += 1;
-          } else {
-            seatNumber += 1;
-          }
+          seatNumber += 1;
         }
       }
       allArray.push(seatArray);
@@ -154,6 +154,10 @@ const SeatsLayout: React.FC<SeatsLayoutProps> = ({
     }
     setBookingSeat(allArray);
   }, []);
+
+  useEffect(() => {
+    getBookedSeats && getBookedSeats(userSelectedSeats);
+  }, [userSelectedSeats]);
 
   const onSeatSelected = useCallback(
     (seat: SeatLayout) => {
@@ -190,6 +194,8 @@ const SeatsLayout: React.FC<SeatsLayoutProps> = ({
         isSleeperLayout={isSleeperLayout}
         seatImage={seatImage}
         driverImage={driverImage}
+        blockedSeatImage={blockedSeatImage}
+        numberTextStyle={numberTextStyle}
         disableSeat={userSelectedSeats.length == maxSeatToSelect}
         onSeatSelected={(seat) => {
           onSeatSelected(seat);
@@ -224,24 +230,63 @@ const SeatsLayout: React.FC<SeatsLayoutProps> = ({
   const renderSeatConfig = (seatData: SeatLayout) => {
     return (
       <>
-        {seatData.type == 'blocked' ? (
-          <ImageBackground
-            source={
-              seatImage != undefined ? seatImage : layoutImage[seatData.type]
-            }
-            style={bgImageStyle}
-            imageStyle={{
-              tintColor: selectedSeatColor[seatData.type],
-              alignSelf: 'center',
-            }}
-            resizeMode="cover"
-          >
-            <Image source={blockedSource} style={imgHeaderStyle} />
-          </ImageBackground>
-        ) : (
+        {seatData.type == 'available' && (
           <Image
             source={
-              seatImage != undefined ? seatImage : layoutImage[seatData.type]
+              seatImage != undefined
+                ? seatImage.image
+                : layoutImage[seatData.type]
+            }
+            style={[
+              seatImageStyle,
+              {
+                tintColor:
+                  seatImage != undefined
+                    ? seatImage.tintColor
+                    : selectedSeatColor[seatData.type],
+              },
+            ]}
+            resizeMode="contain"
+          />
+        )}
+        {seatData.type == 'booked' && (
+          <Image
+            source={
+              seatImage != undefined
+                ? seatImage.image
+                : layoutImage[seatData.type]
+            }
+            style={[
+              seatImageStyle,
+              {
+                tintColor: selectedSeatColor[seatData.type],
+              },
+            ]}
+            resizeMode="contain"
+          />
+        )}
+        {seatData.type == 'women' && (
+          <Image
+            source={
+              seatImage != undefined
+                ? seatImage.image
+                : layoutImage[seatData.type]
+            }
+            style={[
+              seatImageStyle,
+              {
+                tintColor: selectedSeatColor[seatData.type],
+              },
+            ]}
+            resizeMode="contain"
+          />
+        )}
+        {seatData.type == 'blocked' && (
+          <Image
+            source={
+              blockedSeatImage != undefined
+                ? blockedSeatImage
+                : layoutImage[seatData.type]
             }
             style={[
               seatImageStyle,

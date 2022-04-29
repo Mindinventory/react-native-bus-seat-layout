@@ -70,10 +70,9 @@ export const layoutImage = {
   emptySpace: require('./assets/seat.png'),
   door: require('./assets/seat.png'),
   driver: require('./assets/steer.png'),
-  blocked: require('./assets/seat.png'),
+  blocked: require('./assets/seat_blocked.png'),
   women: require('./assets/seat.png'),
 };
-export const blockedSource: ImageRequireSource = require('./assets/block.png');
 
 export const seatContainerStyle: ViewStyle = {
   flexDirection: 'row',
@@ -123,3 +122,23 @@ export const seatNumberStyle: TextStyle = {
   textTransform: 'capitalize',
   marginRight: 5,
 };
+
+export const imgBackgroundStyle: ImageStyle = {
+  // height: seatSize[seatData.type],
+  // width: seatSize[seatData.type],
+  height: '100%',
+  width: '100%',
+  alignItems: 'center',
+  justifyContent: 'center',
+};
+
+export const bookinmgSeatNumberStyle: TextStyle = {
+  marginTop: -5,
+  fontWeight: '500',
+  fontSize: 8,
+};
+
+export const blokcedSeatStyle: ImageStyle = {
+  height: '45%',
+  width: '45%',
+}

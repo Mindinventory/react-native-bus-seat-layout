@@ -1,30 +1,39 @@
 import React from 'react';
-import { TouchableOpacity } from 'react-native';
-import type { SeatLayout } from '../types/index';
+import {
+  TouchableOpacity,
+  ImageBackground,
+  Dimensions,
+  Text,
+  TextStyle,
+} from 'react-native';
+import type {
+  AvaiableSeat,
+  BlockedSeat,
+  DriverSeat,
+  SeatLayout,
+} from '../types/index';
 import {
   layoutImage,
   selectedSeatColor,
   seatheight,
-  seatSize,
   disableButton,
-  blockedSource,
+  imgBackgroundStyle,
+  bookinmgSeatNumberStyle,
 } from '../styles';
-import { Image, ImageBackground } from 'react-native';
-import { Dimensions } from 'react-native';
-import { Text } from 'react-native';
-import type { ImageSourcePropType } from 'react-native';
 
 export interface SeatProps {
   seatData: SeatLayout;
   isDisable: boolean;
   isSleeperLayout?: boolean;
-  seatImage?: string | ImageSourcePropType;
-  driverImage?: string | ImageSourcePropType;
+  seatImage?: AvaiableSeat;
+  driverImage?: DriverSeat;
+  blockedSeatImage?: BlockedSeat;
+  numberTextStyle?: TextStyle;
   onSeatSelect?: () => void;
 }
 
 export const seatHeightConst = 45;
-export const seatSleeperHeightConst = 65;
+export const seatSleeperHeightConst = 85;
 export const seatWidthConst = Dimensions.get('screen').width / 6 - 20;
 
 const Seat: React.FC<SeatProps> = ({
@@ -33,20 +42,40 @@ const Seat: React.FC<SeatProps> = ({
   isSleeperLayout,
   seatImage = undefined,
   driverImage = undefined,
+  blockedSeatImage = undefined,
+  numberTextStyle,
   onSeatSelect,
 }) => {
   const getSourceImage = () => {
     if (seatData.type == 'driver' && driverImage != undefined) {
-      return driverImage;
+      return driverImage.image;
     } else if (
       (seatData.type == 'available' ||
-        seatData.type == 'blocked' ||
-        seatData.type == 'women') &&
+        seatData.type == 'women' ||
+        seatData.type == 'booked') &&
       seatImage != undefined
     ) {
-      return seatImage;
+      return seatImage.image;
+    } else if (seatData.type == 'blocked' && blockedSeatImage != undefined) {
+      return blockedSeatImage.image;
     } else {
       return layoutImage[seatData.type];
+    }
+  };
+
+  const getTintColorImage = () => {
+    if (seatData.type == 'driver' && driverImage != undefined) {
+      return driverImage.tintColor;
+    } else if (seatData.type == 'available' && seatImage != undefined) {
+      return seatImage.tintColor;
+    } else if (seatData.type == 'women') {
+      return selectedSeatColor[seatData.type];
+    } else if (seatData.type == 'booked') {
+      return selectedSeatColor[seatData.type];
+    } else if (seatData.type == 'blocked' && blockedSeatImage != undefined) {
+      return blockedSeatImage.tintColor;
+    } else {
+      return selectedSeatColor[seatData.type];
     }
   };
 
@@ -76,39 +105,17 @@ const Seat: React.FC<SeatProps> = ({
         <>
           <ImageBackground
             source={getSourceImage()}
-            style={{
-              // height: seatSize[seatData.type],
-              // width: seatSize[seatData.type],
-              height: '100%',
-              width: '100%',
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}
+            style={imgBackgroundStyle}
             imageStyle={{
-              tintColor: selectedSeatColor[seatData.type],
+              tintColor: getTintColorImage(),
               alignSelf: 'center',
             }}
             resizeMode="cover"
           >
             {seatData.type != 'driver' && seatData.type == 'booked' && (
-              <Text
-                style={{
-                  marginTop: -5,
-                  fontWeight: '500',
-                  fontSize: 8,
-                }}
-              >
+              <Text style={[bookinmgSeatNumberStyle, numberTextStyle]}>
                 {seatData.seatNo}
               </Text>
-            )}
-            {seatData.type == 'blocked' && (
-              <Image
-                source={blockedSource}
-                style={{
-                  height: '45%',
-                  width: '45%',
-                }}
-              />
             )}
           </ImageBackground>
         </>
@@ -120,7 +127,6 @@ const Seat: React.FC<SeatProps> = ({
 const areEqual = (prevProps: SeatProps, nextProps: SeatProps) => {
   const { seatData } = nextProps;
   const { seatData: prevData } = prevProps;
-  console.log(' >>>>>', seatData, prevData);
   const isSelectedEqual = seatData === prevData;
 
   return isSelectedEqual;

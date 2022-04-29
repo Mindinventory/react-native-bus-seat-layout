@@ -1,9 +1,13 @@
 import React from 'react';
-import { View } from 'react-native';
-import type { SeatLayout } from '../types';
+import { View, TextStyle } from 'react-native';
+import type {
+  AvaiableSeat,
+  BlockedSeat,
+  DriverSeat,
+  SeatLayout,
+} from '../types';
 import { disableButton, seatContainerStyle } from '../styles';
 import Seat from './Seat';
-import type { ImageSourcePropType } from 'react-native';
 
 export interface SeatContainerProps {
   item: Array<SeatLayout>;
@@ -11,8 +15,10 @@ export interface SeatContainerProps {
   disableSeat: boolean;
   isSleeperLayout?: boolean;
   onSeatSelected?: (seat: SeatLayout) => void;
-  seatImage?: string | ImageSourcePropType;
-  driverImage?: string | ImageSourcePropType;
+  seatImage?: AvaiableSeat;
+  driverImage?: DriverSeat;
+  blockedSeatImage?: BlockedSeat;
+  numberTextStyle?: TextStyle;
 }
 
 const SeatContainer: React.FC<SeatContainerProps> = ({
@@ -22,6 +28,8 @@ const SeatContainer: React.FC<SeatContainerProps> = ({
   disableSeat,
   seatImage = undefined,
   driverImage = undefined,
+  blockedSeatImage = undefined,
+  numberTextStyle,
   onSeatSelected,
 }) => {
   return (
@@ -36,6 +44,8 @@ const SeatContainer: React.FC<SeatContainerProps> = ({
           <Seat
             seatImage={seatImage}
             driverImage={driverImage}
+            blockedSeatImage={blockedSeatImage}
+            numberTextStyle={numberTextStyle}
             key={
               seat.id +
               Math.floor(Math.random() * 1000 + 1) +
