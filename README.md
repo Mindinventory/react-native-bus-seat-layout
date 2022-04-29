@@ -24,7 +24,7 @@ import SeatsLayout from "react-native-booking-ticket";
 | selectedSeats | _Array<SelectedSeats> (Optional)_ | Accepts value seatNumber `number` and seatType `number` which accepts value from (`booked` or `women` or `blocked`). Default its set to blank array. |
 | seatImage | _AvaiableSeat_ | Set your custom image for seat to display. |
 | blockedSeatImage | _BlockedSeat_ | Set your custom image for seat that is blocked or damaged to display. |
-| driverImage | _DriverSeat | Set your custom image for Driver to display. |
+| driverImage | _DriverSeat_ | Set your custom image for Driver to display. |
 | numberTextStyle | _TextStyle_ | Add your custom fonts, size, etc to the seat number text.|
 | getBookedSeats | _Fcuntion_ | This function will retutns all the selected seats.|
 ## Contributing
