@@ -45,6 +45,8 @@ android.iml
 example/ios/Pods
 example/ios/Podfile.lock
 
+example/yarn.lock
+yarn.lock
 # node.js
 #
 node_modules/
