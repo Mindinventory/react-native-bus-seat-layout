@@ -112,7 +112,7 @@ const Seat: React.FC<SeatProps> = ({
             }}
             resizeMode="cover"
           >
-            {seatData.type != 'driver' && seatData.type == 'booked' && (
+            {seatData.type != 'driver' && seatData.type == 'booked' && seatData.isStatusChange && (
               <Text style={[bookinmgSeatNumberStyle, numberTextStyle]}>
                 {seatData.seatNo}
               </Text>

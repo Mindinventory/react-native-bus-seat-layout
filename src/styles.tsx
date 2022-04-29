@@ -50,7 +50,7 @@ export const selectedSeatColor = {
   emptySpace: 'transparent',
   door: 'skyblue',
   driver: '#696969',
-  blocked: '#B2B2B2',
+  blocked: '#DC143C',
   women: '#EE96B4',
 };
 
@@ -83,7 +83,7 @@ export const seatContainerStyle: ViewStyle = {
 export const mainContainerStyle: ViewStyle = {
   marginHorizontal: 5,
   borderWidth: 1,
-  borderRadius: 5,
+  borderRadius: 20,
   borderColor: 'gray',
   backgroundColor: 'rgba(1,1,1,0.1)',
   padding: 10,
@@ -93,7 +93,6 @@ export const mainContainerStyle: ViewStyle = {
 };
 
 export const instructionSeatLayout: ViewStyle = {
-  marginBottom: 10,
   flexDirection: 'row',
   alignItems: 'center',
   justifyContent: 'space-evenly',
@@ -141,4 +140,4 @@ export const bookinmgSeatNumberStyle: TextStyle = {
 export const blokcedSeatStyle: ImageStyle = {
   height: '45%',
   width: '45%',
-}
+};

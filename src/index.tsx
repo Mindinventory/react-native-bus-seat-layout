@@ -5,7 +5,7 @@ import {
   SafeAreaView,
   Image,
   Text,
-  TextStyle
+  TextStyle,
 } from 'react-native';
 import type {
   AvaiableSeat,
@@ -227,6 +227,9 @@ const SeatsLayout: React.FC<SeatsLayoutProps> = ({
     },
   ];
 
+  /* 
+  Render All seat for header to identify to user
+  */
   const renderSeatConfig = (seatData: SeatLayout) => {
     return (
       <>
@@ -304,9 +307,9 @@ const SeatsLayout: React.FC<SeatsLayoutProps> = ({
   return (
     <SafeAreaView>
       <View style={mainContainerStyle}>
-        <View style={instructionSeatLayout}>
+        {/* <View style={instructionSeatLayout}>
           {arrPreviewSeats.map((item: SeatLayout) => renderSeatConfig(item))}
-        </View>
+        </View> */}
         <FlatList
           showsVerticalScrollIndicator={false}
           contentContainerStyle={{}}
