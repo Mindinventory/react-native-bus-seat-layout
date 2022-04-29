@@ -26,7 +26,7 @@ import SeatsLayout from "react-native-booking-ticket";
 | blockedSeatImage | _BlockedSeat_ | Set your custom image for seat that is blocked or damaged to display. |
 | driverImage | _DriverSeat_ | Set your custom image for Driver to display. |
 | numberTextStyle | _TextStyle_ | Add your custom fonts, size, etc to the seat number text.|
-| getBookedSeats | _Fcuntion_ | This function will retutns all the selected seats.|
+| getBookedSeats | _function_ | This function will retutns all the selected seats.|
 ## Contributing
 
 See the [contributing guide](CONTRIBUTING.md) to learn how to contribute to the repository and the development workflow.
