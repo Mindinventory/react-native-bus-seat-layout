@@ -7,6 +7,10 @@ Booking Ticket
 ```sh
 npm install react-native-booking-ticket
 ```
+## screenshots
+| Default layout | Pre-Booked/ Available seat layout | Selected seat layout |
+| ------ | ------ | ------ |
+|![Simulator Screen Shot - iPhone 11 - 2022-05-02 at 10 29 23](https://user-images.githubusercontent.com/82019401/166186700-25a71de7-872b-4837-a429-6ac1bd8d6d09.png) | ![Simulator Screen Shot - iPhone 11 - 2022-05-02 at 10 29 27](https://user-images.githubusercontent.com/82019401/166186704-85e323e5-08ec-4313-9f29-21d6b184a3ed.png) | ![Simulator Screen Shot - iPhone 11 - 2022-05-02 at 10 35 00](https://user-images.githubusercontent.com/82019401/166186706-eadb183c-eecb-42e0-89ab-44ac704935b8.png) |
 
 ## Usage
 
