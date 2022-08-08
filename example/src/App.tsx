@@ -1,8 +1,8 @@
-import { DriverIcon, SeatIcon, SleeperSeatIcon } from '../assets';
 import * as React from 'react';
+import { SeatIcon } from '../assets';
 
-import { SafeAreaView, StyleSheet, View } from 'react-native';
-import SeatsLayout from 'react-native-booking-ticket';
+import { SafeAreaView } from 'react-native';
+import SeatsLayout from 'src/components/seat-layout/SeatLayoutView';
 
 export default function App() {
   return (
@@ -20,11 +20,6 @@ export default function App() {
         ]}
         numberTextStyle={{ fontSize: 12 }}
         seatImage={{ image: SeatIcon, tintColor: '#B2B2B2' }}
-        // driverImage={{ image: DriverIcon, tintColor: 'red' }}
-        // blockedSeatImage={{image: DriverIcon, tintColor:'red'}}
-        // getBookedSeats={(seats) => {
-        // console.log('>>>>>>', seats);
-        // }}
       />
     </SafeAreaView>
   );
