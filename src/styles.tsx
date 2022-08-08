@@ -1,6 +1,8 @@
 import type { ViewStyle } from 'react-native';
-import type { ImageRequireSource } from 'react-native';
-import { seatHeightConst, seatSleeperHeightConst } from './component/Seat';
+import {
+  seatHeightConst,
+  seatSleeperHeightConst,
+} from './components/seat-layout/views/Seat';
 import type { ImageStyle } from 'react-native';
 import type { TextStyle } from 'react-native';
 
@@ -54,7 +56,7 @@ export const selectedSeatColor = {
   women: '#EE96B4',
 };
 
-export const seatheight = {
+export const seatHeight = {
   booked: seatSleeperHeightConst,
   available: seatSleeperHeightConst,
   emptySpace: seatHeightConst,
@@ -131,13 +133,13 @@ export const imgBackgroundStyle: ImageStyle = {
   justifyContent: 'center',
 };
 
-export const bookinmgSeatNumberStyle: TextStyle = {
+export const bookingSeatNumberStyle: TextStyle = {
   marginTop: -5,
   fontWeight: '500',
   fontSize: 8,
 };
 
-export const blokcedSeatStyle: ImageStyle = {
+export const blockedSeatStyle: ImageStyle = {
   height: '45%',
   width: '45%',
 };
