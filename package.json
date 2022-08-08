@@ -22,7 +22,8 @@
     "!**/__mocks__"
   ],
   "scripts": {
-    "test": "jest",
+    "test": "yarn prepare && jest",
+    "snapshot-update": "yarn prepare && jest -u",
     "typescript": "tsc --noEmit",
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
     "prepare": "bob build",
@@ -36,13 +37,13 @@
     "ios",
     "android"
   ],
-  "repository": "https://github.com/TusharSanchaniya-mi/react-native-booking-ticket",
-  "author": "Tushar Sanchaniya <tushar.sanchaniya@mindinventory.com> (https://github.com/TusharSanchaniya-mi)",
+  "repository": "https://github.com/Mindinventory/react-native-bus-seat-booking",
+  "author": "Mindinventory",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/TusharSanchaniya-mi/react-native-booking-ticket/issues"
+    "url": "https://github.com/Mindinventory/react-native-bus-seat-booking/issues"
   },
-  "homepage": "https://github.com/TusharSanchaniya-mi/react-native-booking-ticket#readme",
+  "homepage": "https://github.com/Mindinventory/react-native-bus-seat-booking#readme",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
@@ -51,8 +52,8 @@
     "@react-native-community/eslint-config": "^2.0.0",
     "@release-it/conventional-changelog": "^2.0.0",
     "@types/jest": "^27.4.1",
-    "@types/react": "^18.0.5",
-    "@types/react-native": "^0.67.4",
+    "@types/react": "^18.0.16",
+    "@types/react-native": "^0.69.5",
     "@types/react-test-renderer": "^18.0.0",
     "commitlint": "^11.0.0",
     "eslint": "^7.2.0",
@@ -62,11 +63,11 @@
     "jest": "^26.0.1",
     "pod-install": "^0.1.0",
     "prettier": "^2.0.5",
-    "react": "16.13.1",
-    "react-native": "0.63.4",
+    "react": "18.2.0",
+    "react-native": "0.69.3",
     "react-native-builder-bob": "^0.18.0",
-    "release-it": "^14.2.2",
-    "typescript": "^4.6.3"
+    "release-it": "^15.2.0",
+    "typescript": "^4.7.4"
   },
   "peerDependencies": {
     "react": "*",
@@ -108,6 +109,8 @@
       "prettier"
     ],
     "rules": {
+      "react-hooks/rules-of-hooks": "error",
+      "react-hooks/exhaustive-deps": "error",
       "prettier/prettier": [
         "error",
         {
@@ -117,13 +120,28 @@
           "trailingComma": "es5",
           "useTabs": false
         }
-      ]
-    }
+      ],
+      "no-restricted-imports": [
+        "error",
+        "react-native-nutrition-ux"
+      ],
+      "no-console": [
+        "error"
+      ],
+      "no-shadow": "off"
+    },
+    "overrides": [
+      {
+        "files": [
+          "example/**/*",
+          "src/__tests__/**/*"
+        ],
+        "rules": {
+          "no-restricted-imports": "off"
+        }
+      }
+    ]
   },
-  "eslintIgnore": [
-    "node_modules/",
-    "lib/"
-  ],
   "prettier": {
     "quoteProps": "consistent",
     "singleQuote": true,
@@ -131,6 +149,10 @@
     "trailingComma": "es5",
     "useTabs": false
   },
+  "eslintIgnore": [
+    "node_modules/",
+    "lib/"
+  ],
   "react-native-builder-bob": {
     "source": "src",
     "output": "lib",
@@ -144,6 +166,11 @@
         }
       ]
     ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn lint && yarn typescript"
+    }
   },
   "dependencies": {
     "react-native-svg": "^12.3.0"
