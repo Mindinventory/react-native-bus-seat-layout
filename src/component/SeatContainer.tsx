@@ -8,6 +8,7 @@ import type {
 } from '../types';
 import { disableButton, seatContainerStyle, viewBorderStyle } from '../styles';
 import Seat from './Seat';
+import { FlatList } from 'react-native';
 
 export interface SeatContainerProps {
   blockedSeatImage?: BlockedSeat;
@@ -32,7 +33,8 @@ const SeatContainer = ({
   onSeatSelected,
   seatImage = undefined,
 }: SeatContainerProps) => {
-  const renderItem = (seat: SeatLayout, itemIndex: number) => {
+
+const renderItem = (seat: SeatLayout, itemIndex: number) => {
     const key = `${seat.id} + ${itemIndex} + ${seat.seatNo} + ${index}`;
     return (
       <Seat
