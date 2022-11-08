@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { SafeAreaView, StyleSheet } from 'react-native';
-import SeatsLayout from '@mindinventory/react-native-bus-seat-booking';
+import SeatsLayout from '@mindinventory/react-native-bus-seat-layout';
 import { SleeperSeatIcon } from '../assets';
 
 export default function App() {
