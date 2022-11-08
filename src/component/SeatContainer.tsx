@@ -8,6 +8,7 @@ import type {
 } from '../types';
 import { disableButton, seatContainerStyle, viewBorderStyle } from '../styles';
 import Seat from './Seat';
+import { FlatList } from 'react-native';
 
 export interface SeatContainerProps {
   blockedSeatImage?: BlockedSeat;
@@ -21,7 +22,7 @@ export interface SeatContainerProps {
   seatImage?: AvaiableSeat;
 }
 
-const SeatContainer: React.FC<SeatContainerProps> = ({
+const SeatContainer = ({
   blockedSeatImage = undefined,
   disableSeat,
   driverImage = undefined,
@@ -31,31 +32,34 @@ const SeatContainer: React.FC<SeatContainerProps> = ({
   numberTextStyle,
   onSeatSelected,
   seatImage = undefined,
-}) => {
+}: SeatContainerProps) => {
+  const renderItem = (seat: SeatLayout, index: number) => {
+    return (
+      <Seat
+        seatImage={seatImage}
+        driverImage={driverImage}
+        blockedSeatImage={blockedSeatImage}
+        numberTextStyle={numberTextStyle}
+        isDisable={
+          disableSeat || disableButton[seat.type] || !!seat.isSeatSeleced
+        }
+        key={seat.id + index + seat.seatNo}
+        seatData={seat}
+        isSleeperLayout={isSleeperLayout}
+        onSeatSelect={() => {
+          onSeatSelected && onSeatSelected(seat);
+        }}
+      />
+    );
+  };
+
   return (
-    <View style={[seatContainerStyle, index === 0 && viewBorderStyle]}>
-      {item.map((seat) => {
-        return (
-          <Seat
-            seatImage={seatImage}
-            driverImage={driverImage}
-            blockedSeatImage={blockedSeatImage}
-            numberTextStyle={numberTextStyle}
-            key={
-              seat.id +
-              Math.floor(Math.random() * 1000 + 1) +
-              seat.type.toString()
-            }
-            isDisable={
-              disableSeat || disableButton[seat.type] || !!seat.isSeatSeleced
-            }
-            seatData={seat}
-            isSleeperLayout={isSleeperLayout}
-            onSeatSelect={() => {
-              onSeatSelected && onSeatSelected(seat);
-            }}
-          />
-        );
+    <View
+      key={index}
+      style={[seatContainerStyle, index === 0 && viewBorderStyle]}
+    >
+      {item.map((seat, index) => {
+        return renderItem(seat, index);
       })}
     </View>
   );

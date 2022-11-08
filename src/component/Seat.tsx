@@ -21,6 +21,7 @@ import {
   seatheight,
   selectedSeatColor,
 } from '../styles';
+import { useMemo } from 'react';
 
 export interface SeatProps {
   blockedSeatImage?: BlockedSeat;
@@ -47,7 +48,7 @@ const Seat: React.FC<SeatProps> = ({
   seatData,
   seatImage = undefined,
 }) => {
-  const getSourceImage = () => {
+  const getSourceImage = useMemo(() => {
     if (seatData.type === 'driver' && driverImage !== undefined) {
       return driverImage.image;
     } else if (
@@ -62,9 +63,9 @@ const Seat: React.FC<SeatProps> = ({
     } else {
       return layoutImage[seatData.type];
     }
-  };
+  }, [blockedSeatImage, driverImage, seatData.type, seatImage]);
 
-  const getTintColorImage = () => {
+  const getTintColorImage = useMemo(() => {
     if (seatData.type === 'driver' && driverImage !== undefined) {
       return driverImage.tintColor;
     } else if (seatData.type === 'available' && seatImage !== undefined) {
@@ -78,7 +79,7 @@ const Seat: React.FC<SeatProps> = ({
     } else {
       return selectedSeatColor[seatData.type];
     }
-  };
+  }, [blockedSeatImage, driverImage, seatData.type, seatImage]);
 
   return (
     <TouchableOpacity
@@ -103,38 +104,28 @@ const Seat: React.FC<SeatProps> = ({
       }}
     >
       {seatData.type !== 'emptySpace' && (
-        <>
-          <ImageBackground
-            source={getSourceImage()}
-            style={imgBackgroundStyle}
-            imageStyle={{
-              tintColor: getTintColorImage(),
-              alignSelf: 'center',
-              borderRadius: 1,
-              padding: 2,
-            }}
-            resizeMode="contain"
-          >
-            {seatData.type !== 'driver' &&
-              seatData.type === 'booked' &&
-              seatData.isStatusChange && (
-                <Text style={[bookinmgSeatNumberStyle, numberTextStyle]}>
-                  {seatData.seatNo}
-                </Text>
-              )}
-          </ImageBackground>
-        </>
+        <ImageBackground
+          source={getSourceImage}
+          style={imgBackgroundStyle}
+          imageStyle={{
+            tintColor: getTintColorImage,
+            alignSelf: 'center',
+            borderRadius: 1,
+            padding: 2,
+          }}
+          resizeMode="contain"
+        >
+          {seatData.type !== 'driver' &&
+            seatData.type === 'booked' &&
+            seatData.isStatusChange && (
+              <Text style={[bookinmgSeatNumberStyle, numberTextStyle]}>
+                {seatData.seatNo}
+              </Text>
+            )}
+        </ImageBackground>
       )}
     </TouchableOpacity>
   );
 };
 
-const areEqual = (prevProps: SeatProps, nextProps: SeatProps) => {
-  const { seatData } = nextProps;
-  const { seatData: prevData } = prevProps;
-  const isSelectedEqual = seatData === prevData;
-
-  return isSelectedEqual;
-};
-
-export default React.memo(Seat, areEqual);
+export default React.memo(Seat);

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useCallback } from 'react';
 import { View, FlatList, SafeAreaView, TextStyle } from 'react-native';
 import type {
   AvaiableSeat,
@@ -11,6 +11,8 @@ import type {
 } from './types';
 import { mainContainerStyle } from './styles';
 import SeatContainer from './component/SeatContainer';
+import { useLayoutEffect } from 'react';
+import { useRef } from 'react';
 
 /*
 This are props that require to pass in order to get seat layout
@@ -42,12 +44,11 @@ const SeatsLayout: React.FC<SeatsLayoutProps> = ({
   selectedSeats = [],
 }) => {
   const [bookingSeat, setBookingSeat] = useState<Array<Array<SeatLayout>>>([]);
-  const [userSelectedSeats, setUserSelectedSeat] = useState<Array<SeatLayout>>(
-    []
-  );
-  const isEntryDoorAtFront = true;
 
-  useEffect(() => {
+  const isEntryDoorAtFront = true;
+  const userSelectedSeats = useRef<Array<SeatLayout>>([]);
+
+  useLayoutEffect(() => {
     let allArray: Array<Array<SeatLayout>> = [];
     let i = 0;
     let seatNumber = 1;
@@ -145,15 +146,17 @@ const SeatsLayout: React.FC<SeatsLayoutProps> = ({
       i += 1;
     }
     setBookingSeat(allArray);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  useEffect(() => {
-    getBookedSeats && getBookedSeats(userSelectedSeats);
-  }, [userSelectedSeats]);
+  useLayoutEffect(() => {
+    getBookedSeats && getBookedSeats(userSelectedSeats.current);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [userSelectedSeats.current]);
 
   const onSeatSelected = useCallback(
     (seat: SeatLayout) => {
-      let allChangedItem: Array<Array<SeatLayout>> = bookingSeat;
+      let allChangedItem: Array<Array<SeatLayout>> = [...bookingSeat];
       const { id } = seat;
       const arrindexs: Array<number> = id
         .split(',')
@@ -176,7 +179,8 @@ const SeatsLayout: React.FC<SeatsLayoutProps> = ({
         return rowSeat.type === 'booked' && rowSeat.isStatusChange;
       });
     });
-    setUserSelectedSeat(filterSelectedSeats);
+    userSelectedSeats.current = filterSelectedSeats;
+    // setUserSelectedSeat(filterSelectedSeats);
   };
 
   const renderSeatlayout = (item: Array<SeatLayout>, index: number) => {
@@ -189,7 +193,7 @@ const SeatsLayout: React.FC<SeatsLayoutProps> = ({
         driverImage={driverImage}
         blockedSeatImage={blockedSeatImage}
         numberTextStyle={numberTextStyle}
-        disableSeat={userSelectedSeats.length === maxSeatToSelect}
+        disableSeat={userSelectedSeats.current.length === maxSeatToSelect}
         onSeatSelected={(seat) => {
           onSeatSelected(seat);
         }}
@@ -207,7 +211,7 @@ const SeatsLayout: React.FC<SeatsLayoutProps> = ({
           renderItem={({ item, index }) => {
             return renderSeatlayout(item, index);
           }}
-          keyExtractor={() => Math.random().toString()}
+          keyExtractor={(index) => 'key' + index}
         />
       </View>
     </SafeAreaView>
