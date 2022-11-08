@@ -1,6 +1,6 @@
 {
-  "name": "@mindinventory/react-native-bus-seat-booking-example",
-  "description": "Example app for @mindinventory/react-native-bus-seat-booking",
+  "name": "@mindinventory/react-native-bus-seat-layout-example",
+  "description": "Example app for @mindinventory/react-native-bus-seat-layout",
   "version": "0.0.1",
   "private": true,
   "scripts": {
