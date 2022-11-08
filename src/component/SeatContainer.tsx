@@ -8,7 +8,6 @@ import type {
 } from '../types';
 import { disableButton, seatContainerStyle, viewBorderStyle } from '../styles';
 import Seat from './Seat';
-import { FlatList } from 'react-native';
 
 export interface SeatContainerProps {
   blockedSeatImage?: BlockedSeat;
