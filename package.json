@@ -13,7 +13,7 @@
     "android",
     "ios",
     "cpp",
-    "@mindinventory/react-native-bus-seat-layout.podspec",
+    "*.podspec",
     "!lib/typescript/example",
     "!android/build",
     "!ios/build",
