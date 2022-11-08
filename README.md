@@ -13,8 +13,9 @@ yarn add @mindinventory/react-native-bus-seat-layout
 ```
 
 ## Preview
-![Simulator Screen Recording - iPhone 13 - 2022-11-08 at 12 11 31](https://user-images.githubusercontent.com/82019401/200493768-018edf43-c756-4d22-ab65-464a7be76114.gif)
-![Simulator Screen Recording - iPhone 13 - 2022-11-08 at 11 50 06](https://user-images.githubusercontent.com/82019401/200490528-056ee01f-1130-4fff-b1f2-2ef35ef13db8.gif)
+![Simulator Screen Recording - iPhone 11 - 2022-11-08 at 18 39 33](https://user-images.githubusercontent.com/82019401/200575512-eb7f94ed-43cf-4461-b209-836d3374fa6f.gif)
+![Simulator Screen Recording - iPhone 11 - 2022-11-08 at 18 40 42](https://user-images.githubusercontent.com/82019401/200575530-1d4c6bf1-8d97-4cf6-8060-b640cc9486a7.gif)
+
 
 
 ### Supported platform

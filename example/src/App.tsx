@@ -8,7 +8,7 @@ export default function App() {
     <SafeAreaView>
       <SeatsLayout
         row={13}
-        layout={{ columnOne: 3, columnTwo: 2 }}
+        layout={{ columnOne: 2, columnTwo: 2 }}
         isSleeperLayout={true}
         seatImage={{ image: SleeperSeatIcon, tintColor: 'gray' }}
         selectedSeats={[
