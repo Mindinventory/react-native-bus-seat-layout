@@ -1,10 +1,11 @@
+/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import {
-  TouchableOpacity,
-  ImageBackground,
   Dimensions,
+  ImageBackground,
   Text,
   TextStyle,
+  TouchableOpacity,
 } from 'react-native';
 import type {
   AvaiableSeat,
@@ -13,23 +14,23 @@ import type {
   SeatLayout,
 } from '../types/index';
 import {
-  layoutImage,
-  selectedSeatColor,
-  seatheight,
+  bookinmgSeatNumberStyle,
   disableButton,
   imgBackgroundStyle,
-  bookinmgSeatNumberStyle,
+  layoutImage,
+  seatheight,
+  selectedSeatColor,
 } from '../styles';
 
 export interface SeatProps {
-  seatData: SeatLayout;
+  blockedSeatImage?: BlockedSeat;
+  driverImage?: DriverSeat;
   isDisable: boolean;
   isSleeperLayout?: boolean;
-  seatImage?: AvaiableSeat;
-  driverImage?: DriverSeat;
-  blockedSeatImage?: BlockedSeat;
   numberTextStyle?: TextStyle;
   onSeatSelect?: () => void;
+  seatData: SeatLayout;
+  seatImage?: AvaiableSeat;
 }
 
 export const seatHeightConst = 45;
@@ -37,26 +38,26 @@ export const seatSleeperHeightConst = 85;
 export const seatWidthConst = Dimensions.get('screen').width / 6 - 20;
 
 const Seat: React.FC<SeatProps> = ({
-  seatData,
+  blockedSeatImage = undefined,
+  driverImage = undefined,
   isDisable,
   isSleeperLayout,
-  seatImage = undefined,
-  driverImage = undefined,
-  blockedSeatImage = undefined,
   numberTextStyle,
   onSeatSelect,
+  seatData,
+  seatImage = undefined,
 }) => {
   const getSourceImage = () => {
-    if (seatData.type == 'driver' && driverImage != undefined) {
+    if (seatData.type === 'driver' && driverImage !== undefined) {
       return driverImage.image;
     } else if (
-      (seatData.type == 'available' ||
-        seatData.type == 'women' ||
-        seatData.type == 'booked') &&
-      seatImage != undefined
+      (seatData.type === 'available' ||
+        seatData.type === 'women' ||
+        seatData.type === 'booked') &&
+      seatImage !== undefined
     ) {
       return seatImage.image;
-    } else if (seatData.type == 'blocked' && blockedSeatImage != undefined) {
+    } else if (seatData.type === 'blocked' && blockedSeatImage !== undefined) {
       return blockedSeatImage.image;
     } else {
       return layoutImage[seatData.type];
@@ -64,15 +65,15 @@ const Seat: React.FC<SeatProps> = ({
   };
 
   const getTintColorImage = () => {
-    if (seatData.type == 'driver' && driverImage != undefined) {
+    if (seatData.type === 'driver' && driverImage !== undefined) {
       return driverImage.tintColor;
-    } else if (seatData.type == 'available' && seatImage != undefined) {
+    } else if (seatData.type === 'available' && seatImage !== undefined) {
       return seatImage.tintColor;
-    } else if (seatData.type == 'women') {
+    } else if (seatData.type === 'women') {
       return selectedSeatColor[seatData.type];
-    } else if (seatData.type == 'booked') {
+    } else if (seatData.type === 'booked') {
       return selectedSeatColor[seatData.type];
-    } else if (seatData.type == 'blocked' && blockedSeatImage != undefined) {
+    } else if (seatData.type === 'blocked' && blockedSeatImage !== undefined) {
       return blockedSeatImage.tintColor;
     } else {
       return selectedSeatColor[seatData.type];
@@ -91,17 +92,17 @@ const Seat: React.FC<SeatProps> = ({
       }}
       style={{
         height:
-          seatData.type == 'driver'
+          seatData.type === 'driver'
             ? 35
             : isSleeperLayout
             ? seatheight[seatData.type]
             : seatHeightConst,
-        width: seatData.type == 'driver' ? 35 : seatWidthConst,
+        width: seatData.type === 'driver' ? 35 : seatWidthConst,
         alignItems: 'center',
         justifyContent: 'center',
       }}
     >
-      {seatData.type != 'emptySpace' && (
+      {seatData.type !== 'emptySpace' && (
         <>
           <ImageBackground
             source={getSourceImage()}
@@ -109,14 +110,18 @@ const Seat: React.FC<SeatProps> = ({
             imageStyle={{
               tintColor: getTintColorImage(),
               alignSelf: 'center',
+              borderRadius: 1,
+              padding: 2,
             }}
-            resizeMode="cover"
+            resizeMode="contain"
           >
-            {seatData.type != 'driver' && seatData.type == 'booked' && seatData.isStatusChange && (
-              <Text style={[bookinmgSeatNumberStyle, numberTextStyle]}>
-                {seatData.seatNo}
-              </Text>
-            )}
+            {seatData.type !== 'driver' &&
+              seatData.type === 'booked' &&
+              seatData.isStatusChange && (
+                <Text style={[bookinmgSeatNumberStyle, numberTextStyle]}>
+                  {seatData.seatNo}
+                </Text>
+              )}
           </ImageBackground>
         </>
       )}
