@@ -33,7 +33,9 @@ const SeatContainer = ({
   onSeatSelected,
   seatImage = undefined,
 }: SeatContainerProps) => {
-  const renderItem = (seat: SeatLayout, index: number) => {
+
+const renderItem = (seat: SeatLayout, itemIndex: number) => {
+    const key = `${seat.id} + ${itemIndex} + ${seat.seatNo} + ${index}`;
     return (
       <Seat
         seatImage={seatImage}
@@ -43,7 +45,7 @@ const SeatContainer = ({
         isDisable={
           disableSeat || disableButton[seat.type] || !!seat.isSeatSeleced
         }
-        key={seat.id + index + seat.seatNo}
+        key={key}
         seatData={seat}
         isSleeperLayout={isSleeperLayout}
         onSeatSelect={() => {
@@ -55,7 +57,7 @@ const SeatContainer = ({
 
   return (
     <View
-      key={index}
+      key={`horizontal ${index} ${item}`}
       style={[seatContainerStyle, index === 0 && viewBorderStyle]}
     >
       {item.map((seat, index) => {
