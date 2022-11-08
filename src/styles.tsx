@@ -1,8 +1,5 @@
-import type { ViewStyle } from 'react-native';
-import type { ImageRequireSource } from 'react-native';
+import type { ViewStyle, TextStyle, ImageStyle } from 'react-native';
 import { seatHeightConst, seatSleeperHeightConst } from './component/Seat';
-import type { ImageStyle } from 'react-native';
-import type { TextStyle } from 'react-native';
 
 export const marginHorizontal = {
   booked: 2,
@@ -51,7 +48,7 @@ export const selectedSeatColor = {
   door: 'skyblue',
   driver: '#696969',
   blocked: '#DC143C',
-  women: '#EE96B4',
+  women: '#E8296A',
 };
 
 export const seatheight = {
@@ -80,16 +77,19 @@ export const seatContainerStyle: ViewStyle = {
   justifyContent: 'space-evenly',
 };
 
+export const viewBorderStyle: ViewStyle = {
+  borderColor: 'lightgray',
+  borderBottomWidth: 1,
+};
+
 export const mainContainerStyle: ViewStyle = {
   marginHorizontal: 5,
   borderWidth: 1,
   borderRadius: 20,
   borderColor: 'gray',
-  backgroundColor: 'rgba(1,1,1,0.1)',
+  backgroundColor: 'white',
   padding: 10,
   height: '100%',
-  // alignSelf: 'center',
-  // justifyContent: 'center',
 };
 
 export const instructionSeatLayout: ViewStyle = {
