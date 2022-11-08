@@ -1,6 +1,6 @@
 {
   "name": "@mindinventory/react-native-bus-seat-layout",
-  "version": "0.1.0",
+  "version": "1.0.1",
   "description": "Booking Ticket",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
@@ -34,7 +34,12 @@
   "keywords": [
     "react-native",
     "ios",
-    "android"
+    "android",
+    "booking",
+    "seat",
+    "layout",
+    "booking",
+    "slots"
   ],
   "repository": "https://github.com/Mindinventory/react-native-bus-seat-layout",
   "author": "Mindinventory",
