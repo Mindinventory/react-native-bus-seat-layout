@@ -62,7 +62,7 @@ See the [contributing guide](CONTRIBUTING.md) to learn how to contribute to the 
 
 ## License!
 
-@mindinventory/react-native-bus-seat-layout [MIT-licensed](hhttps://github.com/Mindinventory/mindinventory/react-native-bus-seat-layout/blob/main/LICENSE).
+@mindinventory/react-native-bus-seat-layout [MIT-licensed](https://github.com/Mindinventory/mindinventory/react-native-bus-seat-layout/blob/main/LICENSE).
 
 # Let us know!
 

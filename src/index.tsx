@@ -145,10 +145,12 @@ const SeatsLayout: React.FC<SeatsLayoutProps> = ({
       i += 1;
     }
     setBookingSeat(allArray);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     getBookedSeats && getBookedSeats(userSelectedSeats);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userSelectedSeats]);
 
   const onSeatSelected = useCallback(
