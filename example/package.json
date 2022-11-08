@@ -1,6 +1,6 @@
 {
-  "name": "react-native-booking-ticket-example",
-  "description": "Example app for react-native-booking-ticket",
+  "name": "@mindinventory/react-native-bus-seat-layout-example",
+  "description": "Example app for @mindinventory/react-native-bus-seat-layout",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -22,5 +22,9 @@
     "babel-plugin-module-resolver": "^4.0.0",
     "metro-react-native-babel-preset": "^0.64.0",
     "typescript": "^4.6.3"
+  },
+  "resolutions": {
+    "@types/react": "18.0.5",
+    "react-native": "^0.67.4"
   }
 }

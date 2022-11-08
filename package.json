@@ -1,5 +1,5 @@
 {
-  "name": "react-native-booking-ticket",
+  "name": "@mindinventory/react-native-bus-seat-layout",
   "version": "0.1.0",
   "description": "Booking Ticket",
   "main": "lib/commonjs/index",
@@ -13,7 +13,7 @@
     "android",
     "ios",
     "cpp",
-    "react-native-booking-ticket.podspec",
+    "@mindinventory/react-native-bus-seat-layout.podspec",
     "!lib/typescript/example",
     "!android/build",
     "!ios/build",
@@ -36,16 +36,13 @@
     "ios",
     "android"
   ],
-  "repository": "https://github.com/TusharSanchaniya-mi/react-native-booking-ticket",
-  "author": "Tushar Sanchaniya <tushar.sanchaniya@mindinventory.com> (https://github.com/TusharSanchaniya-mi)",
+  "repository": "https://github.com/TusharSanchaniya-mi/mindinventory-react-native-bus-seat-layout",
+  "author": "Mindinventory",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/TusharSanchaniya-mi/react-native-booking-ticket/issues"
+    "url": "https://github.com/TusharSanchaniya-mi/mindinventory-react-native-bus-seat-layout/issues"
   },
-  "homepage": "https://github.com/TusharSanchaniya-mi/react-native-booking-ticket#readme",
-  "publishConfig": {
-    "registry": "https://registry.npmjs.org/"
-  },
+  "homepage": "https://github.com/TusharSanchaniya-mi/mindinventory-react-native-bus-seat-layout#readme",
   "devDependencies": {
     "@commitlint/config-conventional": "^11.0.0",
     "@react-native-community/eslint-config": "^2.0.0",
@@ -147,5 +144,9 @@
   },
   "dependencies": {
     "react-native-svg": "^12.3.0"
+  },
+  "resolutions": {
+    "@types/react": "18.0.5",
+    "react-native": "^0.67.4"
   }
 }

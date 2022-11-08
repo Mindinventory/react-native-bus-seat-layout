@@ -2,7 +2,7 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
-      "react-native-booking-ticket": ["./src/index"]
+      "@mindinventory/react-native-bus-seat-layout": ["./src/index"]
     },
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,
