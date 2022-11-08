@@ -149,7 +149,7 @@ const SeatsLayout: React.FC<SeatsLayoutProps> = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
- useLayoutEffect(() => {
+  useLayoutEffect(() => {
     getBookedSeats && getBookedSeats(userSelectedSeats.current);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userSelectedSeats.current]);
@@ -211,7 +211,7 @@ const SeatsLayout: React.FC<SeatsLayoutProps> = ({
           renderItem={({ item, index }) => {
             return renderSeatlayout(item, index);
           }}
-          keyExtractor={(index) => 'key' + index}
+          keyExtractor={(item: SeatLayout[]) => item[0].id}
         />
       </View>
     </SafeAreaView>
