@@ -115,13 +115,13 @@ const Seat: React.FC<SeatProps> = ({
           }}
           resizeMode="contain"
         >
-          {seatData.type !== 'driver' &&
+          {/* {seatData.type !== 'driver' &&
             seatData.type === 'booked' &&
-            seatData.isStatusChange && (
+            seatData.isStatusChange && ( */}
               <Text style={[bookinmgSeatNumberStyle, numberTextStyle]}>
                 {seatData.seatNo}
               </Text>
-            )}
+            {/* )} */}
         </ImageBackground>
       )}
     </TouchableOpacity>
