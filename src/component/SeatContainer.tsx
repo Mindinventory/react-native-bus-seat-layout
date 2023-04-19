@@ -58,8 +58,8 @@ const SeatContainer = ({
       key={`horizontal ${index} ${item}`}
       style={[seatContainerStyle, index === 0 && viewBorderStyle]}
     >
-      {item.map((seat, index) => {
-        return renderItem(seat, index);
+      {item.map((seat, mapIndex) => {
+        return renderItem(seat, mapIndex);
       })}
     </View>
   );
