@@ -9,7 +9,6 @@
     "start": "react-native start"
   },
   "dependencies": {
-    "@shopify/flash-list": "^1.4.0",
     "react": "16.13.1",
     "react-native": "0.63.4"
   },
