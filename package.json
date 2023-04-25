@@ -1,7 +1,7 @@
 {
   "name": "@mindinventory/react-native-bus-seat-layout",
-  "version": "1.0.2",
-  "description": "Booking Ticket",
+  "version": "1.0.3",
+  "description": "This library provides seats layout for bus booking, you can give custom styles of seat numbers. also can give images for seat.\nyou have to provide number of rows that you need to draw layout, you will get selected seats from props.",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
   "types": "lib/typescript/index.d.ts",
@@ -65,7 +65,7 @@
     "pod-install": "^0.1.0",
     "prettier": "^2.0.5",
     "react": "16.13.1",
-    "react-native": "0.63.4",
+    "react-native": "0.63.5",
     "react-native-builder-bob": "^0.18.0",
     "release-it": "^14.2.2",
     "typescript": "^4.6.3"
