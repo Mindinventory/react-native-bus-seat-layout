@@ -71,7 +71,9 @@ const SeatsLayout: React.FC<SeatsLayoutProps> = ({
         seatArray.push(seatLayout);
         // }
 
-        //Render empty space to show driver seat at last row and
+        /*
+         * Render empty space to show driver seat at last row and
+         */
         while (j < layout.columnOne + layout.columnTwo) {
           let iTotalColumn = layout.columnOne + layout.columnTwo;
           seatLayout = {
@@ -105,6 +107,10 @@ const SeatsLayout: React.FC<SeatsLayoutProps> = ({
         let bSpaceAdded = false;
         let revCounter = i * (layout.columnOne + layout.columnTwo);
 
+        if (row % 2 !== 0 && i === row - 1) {
+          revCounter += 1;
+        }
+
         while (j < layout.columnOne + layout.columnTwo) {
           let preSelectedSeatItem = selectedSeats.filter((item) => {
             return item.seatNumber === (i % 2 === 0 ? revCounter : seatNumber);
@@ -119,9 +125,21 @@ const SeatsLayout: React.FC<SeatsLayoutProps> = ({
             seatNo: i % 2 === 0 ? revCounter : seatNumber,
             isSeatSeleced: preSelectedSeatItem.length > 0,
           };
-
           seatArray.push(seatLayout);
+          /*
+           * Add space between rows of seat and add seat for last row.
+           */
           if (j === layout.columnOne - 1) {
+            let seatNo = 0;
+            if (i === row - 1) {
+              if (row % 2 !== 0) {
+                revCounter -= 1;
+                seatNo = revCounter;
+              } else {
+                seatNo = seatNumber += 1;
+              }
+            }
+
             seatLayout = {
               id: `${i},${j + 1}`,
               type:
@@ -130,7 +148,7 @@ const SeatsLayout: React.FC<SeatsLayoutProps> = ({
                     ? preSelectedSeatItem[0].seatType
                     : 'available'
                   : 'emptySpace',
-              seatNo: i % 2 === 0 || i !== row - 1 ? revCounter : seatNumber,
+              seatNo: seatNo,
               isSeatSeleced:
                 i === row - 1 ? preSelectedSeatItem.length > 0 : false,
             };
@@ -138,6 +156,7 @@ const SeatsLayout: React.FC<SeatsLayoutProps> = ({
             bSpaceAdded = true;
           }
           j += 1;
+
           revCounter -= 1;
           seatNumber += 1;
         }
@@ -149,7 +168,7 @@ const SeatsLayout: React.FC<SeatsLayoutProps> = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
- useLayoutEffect(() => {
+  useLayoutEffect(() => {
     getBookedSeats && getBookedSeats(userSelectedSeats.current);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userSelectedSeats.current]);
