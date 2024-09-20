@@ -3,6 +3,7 @@ import { View, FlatList, SafeAreaView, TextStyle } from 'react-native';
 import type {
   AvaiableSeat,
   BlockedSeat,
+  DoorSeatImage,
   DriverPosition,
   DriverSeat,
   Layout,
@@ -19,6 +20,7 @@ This are props that require to pass in order to get seat layout
 */
 export interface SeatsLayoutProps {
   blockedSeatImage?: BlockedSeat;
+  doorSeatImage?: DoorSeatImage;
   driverImage?: DriverSeat;
   driverPosition?: DriverPosition;
   getBookedSeats?: (seats: Array<SeatLayout>) => void;
@@ -33,6 +35,7 @@ export interface SeatsLayoutProps {
 const SeatsLayout: React.FC<SeatsLayoutProps> = ({
   blockedSeatImage = undefined,
   driverImage = undefined,
+  doorSeatImage = undefined,
   driverPosition = 'right',
   getBookedSeats,
   isSleeperLayout = false,
@@ -62,14 +65,13 @@ const SeatsLayout: React.FC<SeatsLayoutProps> = ({
       };
       if (i === 0 && j === 0) {
         // Add Bus layout has at front door
-        // if (isEntryDoorAtFront) {
-        seatLayout = {
-          id: `${i},${j}`,
-          type: driverPosition === 'left' ? 'driver' : 'emptySpace',
-          // type: driverPosition == 'left' ? 'driver' : 'emptySpace',
-        };
-        seatArray.push(seatLayout);
-        // }
+        if (isEntryDoorAtFront) {
+          seatLayout = {
+            id: `${i},${j}`,
+            type: driverPosition === 'left' ? 'driver' : 'emptySpace',
+          };
+          seatArray.push(seatLayout);
+        }
 
         /*
          * Render empty space to show driver seat at last row and
@@ -211,6 +213,7 @@ const SeatsLayout: React.FC<SeatsLayoutProps> = ({
         seatImage={seatImage}
         driverImage={driverImage}
         blockedSeatImage={blockedSeatImage}
+        doorSeatImage={doorSeatImage}
         numberTextStyle={numberTextStyle}
         disableSeat={userSelectedSeats.current.length === maxSeatToSelect}
         onSeatSelected={(seat) => {

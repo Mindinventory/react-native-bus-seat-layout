@@ -8,16 +8,18 @@ export type SeatType =
   | 'door'
   | 'driver'
   | 'emptySpace'
-  | 'women';
+  | 'women'
+  | 'door';
 
-export type SelectedSeatType = 'booked' | 'women' | 'blocked';
+export type SelectedSeatType = 'booked' | 'women' | 'blocked' | 'door';
 
 export type SeatImageAssetsType =
   | 'available'
   | 'blocked'
   | 'booked'
   | 'driver'
-  | 'women';
+  | 'women'
+  | 'door';
 
 export interface SeatLayout {
   id: string;
@@ -42,6 +44,10 @@ export interface AvaiableSeat {
   tintColor: ColorValue | undefined;
 }
 export interface BlockedSeat {
+  image: string | ImageSourcePropType;
+  tintColor: ColorValue | undefined;
+}
+export interface DoorSeatImage {
   image: string | ImageSourcePropType;
   tintColor: ColorValue | undefined;
 }
