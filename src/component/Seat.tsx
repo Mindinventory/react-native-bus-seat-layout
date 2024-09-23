@@ -10,6 +10,7 @@ import {
 import type {
   AvaiableSeat,
   BlockedSeat,
+  DoorSeatImage,
   DriverSeat,
   SeatLayout,
 } from '../types/index';
@@ -25,6 +26,7 @@ import { useMemo } from 'react';
 
 export interface SeatProps {
   blockedSeatImage?: BlockedSeat;
+  doorSeatImage?: DoorSeatImage;
   driverImage?: DriverSeat;
   isDisable: boolean;
   isSleeperLayout?: boolean;
@@ -42,6 +44,7 @@ const Seat: React.FC<SeatProps> = ({
   blockedSeatImage = undefined,
   driverImage = undefined,
   isDisable,
+  doorSeatImage = undefined,
   isSleeperLayout,
   numberTextStyle,
   onSeatSelect,
@@ -60,10 +63,12 @@ const Seat: React.FC<SeatProps> = ({
       return seatImage.image;
     } else if (seatData.type === 'blocked' && blockedSeatImage !== undefined) {
       return blockedSeatImage.image;
+    } else if (seatData.type === 'door' && doorSeatImage !== undefined) {
+      return doorSeatImage?.image;
     } else {
       return layoutImage[seatData.type];
     }
-  }, [blockedSeatImage, driverImage, seatData.type, seatImage]);
+  }, [blockedSeatImage, doorSeatImage, driverImage, seatData.type, seatImage]);
 
   const getTintColorImage = useMemo(() => {
     if (seatData.type === 'driver' && driverImage !== undefined) {
@@ -76,10 +81,12 @@ const Seat: React.FC<SeatProps> = ({
       return selectedSeatColor[seatData.type];
     } else if (seatData.type === 'blocked' && blockedSeatImage !== undefined) {
       return blockedSeatImage.tintColor;
+    } else if (seatData.type === 'door' && doorSeatImage !== undefined) {
+      return doorSeatImage.tintColor;
     } else {
       return selectedSeatColor[seatData.type];
     }
-  }, [blockedSeatImage, driverImage, seatData.type, seatImage]);
+  }, [blockedSeatImage, doorSeatImage, driverImage, seatData.type, seatImage]);
 
   return (
     <TouchableOpacity
@@ -101,6 +108,7 @@ const Seat: React.FC<SeatProps> = ({
         width: seatData.type === 'driver' ? 35 : seatWidthConst,
         alignItems: 'center',
         justifyContent: 'center',
+        alignSelf: 'center',
       }}
     >
       {seatData.type !== 'emptySpace' && (
