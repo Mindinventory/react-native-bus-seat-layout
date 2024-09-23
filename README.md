@@ -40,16 +40,24 @@ import SeatsLayout from '@mindinventory/react-native-bus-seat-layout';
 
 ```js
 <SeatsLayout
-  row={14}
-  layout={{ columnOne: 3, columnTwo: 2 }}
+  row={10}
+  layout={{ columnOne: 2, columnTwo: 2 }}
+  isSleeperLayout={true}
+  seatImage={{ image: SleeperSeatIcon, tintColor: 'gray' }}
   selectedSeats={[
-    { seatNumber: 1, seatType: 'booked' },
+    { seatNumber: 1, seatType: 'booked' }, // Booked seat
+    { seatNumber: 2, seatType: 'blocked' }, // Blocked Seat data
+    { seatNumber: 5, seatType: 'door' }, // Show Door
+    { seatNumber: 6, seatType: 'emptySpace' }, // Empty space
     { seatNumber: 11, seatType: 'women' },
-    { seatNumber: 17, seatType: 'women' },
-    { seatNumber: 43, seatType: 'blocked' },
+    { seatNumber: 12, seatType: 'women' }, // Women seat
+    { seatNumber: 16, seatType: 'booked' },
+    { seatNumber: 17, seatType: 'door' }, // Show Door
+    { seatNumber: 18, seatType: 'emptySpace' }, // Empty space
+    { seatNumber: 29, seatType: 'door' }, // Show Door
+    { seatNumber: 30, seatType: 'emptySpace' },
   ]}
-  numberTextStyle={{ fontSize: 12 }}
-  seatImage={{ image: SleeperSeatIcon, tintColor: '#B2B2B2' }}
+  numberTextStyle={styles.numberStyle}
   getBookedSeats={(seats) => {
     console.log('getBookedSeats :: ', seats);
   }}

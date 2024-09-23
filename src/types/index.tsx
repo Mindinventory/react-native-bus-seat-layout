@@ -11,7 +11,12 @@ export type SeatType =
   | 'women'
   | 'door';
 
-export type SelectedSeatType = 'booked' | 'women' | 'blocked' | 'door';
+export type SelectedSeatType =
+  | 'booked'
+  | 'women'
+  | 'blocked'
+  | 'door'
+  | 'emptySpace';
 
 export type SeatImageAssetsType =
   | 'available'
