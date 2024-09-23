@@ -3,6 +3,7 @@ import { View, TextStyle } from 'react-native';
 import type {
   AvaiableSeat,
   BlockedSeat,
+  DoorSeatImage,
   DriverSeat,
   SeatLayout,
 } from '../types';
@@ -13,6 +14,7 @@ export interface SeatContainerProps {
   blockedSeatImage?: BlockedSeat;
   disableSeat: boolean;
   driverImage?: DriverSeat;
+  doorSeatImage?: DoorSeatImage;
   index: number;
   isSleeperLayout?: boolean;
   item: Array<SeatLayout>;
@@ -25,6 +27,7 @@ const SeatContainer = ({
   blockedSeatImage = undefined,
   disableSeat,
   driverImage = undefined,
+  doorSeatImage = undefined,
   index,
   isSleeperLayout,
   item,
@@ -40,6 +43,7 @@ const SeatContainer = ({
         driverImage={driverImage}
         blockedSeatImage={blockedSeatImage}
         numberTextStyle={numberTextStyle}
+        doorSeatImage={doorSeatImage}
         isDisable={
           disableSeat || disableButton[seat.type] || !!seat.isSeatSeleced
         }
